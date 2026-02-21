@@ -104,7 +104,8 @@ export default function App() {
             100,
             "#08519c",
           ] as Expression,
-          "fill-opacity": 0.55,
+          "fill-opacity": 0.7,
+          "fill-outline-color": "#0b2545",
         },
       });
       map.addLayer({
@@ -113,8 +114,10 @@ export default function App() {
         source: "projects",
         paint: {
           "line-color": "#0b2545",
-          "line-width": 1.25,
-        },
+          "line-width": 1.5,
+          "line-join": "round",
+          "line-cap": "round",
+        } as mapboxgl.LinePaint,
       });
 
       if (WATER_STRESS_TILE_URL) {
