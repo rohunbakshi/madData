@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.data import build_project_index, load_projects
-from app.models import CountySummary, CoolingType, ProjectDetail, ProjectSummary, ScoreRequest, ScoreResponse
+from app.models import CountySummary, CoolingType, ProjectDetail, ScoreRequest, ScoreResponse
 from app.scoring import calculate_score, tier_for_score
 
 app = FastAPI(
@@ -28,8 +28,8 @@ def health() -> dict:
     return {"status": "ok", "data_source": DATA_SOURCE, "project_count": len(PROJECTS)}
 
 
-@app.get("/projects", response_model=list[ProjectSummary])
-def list_projects() -> list[ProjectSummary]:
+@app.get("/projects", response_model=list[ProjectDetail])
+def list_projects() -> list[ProjectDetail]:
     return PROJECTS
 
 
