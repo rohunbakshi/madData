@@ -51,6 +51,7 @@ export default function App() {
   const [loadingScore, setLoadingScore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [demoStep, setDemoStep] = useState(0);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   const selectedProject = useMemo(
     () => projects.find((project) => project.project_id === selectedProjectId) ?? null,
@@ -84,6 +85,7 @@ export default function App() {
     mapRef.current = map;
 
     map.on("load", () => {
+      setMapLoaded(true);
       map.addSource("projects", { type: "geojson", data: buildProjectFeatureCollection([]) });
 
       map.addLayer({
@@ -171,16 +173,18 @@ export default function App() {
     });
 
     return () => {
+      setMapLoaded(false);
       map.remove();
       mapRef.current = null;
     };
   }, []);
 
   useEffect(() => {
+    if (!mapLoaded) return;
     const source = mapRef.current?.getSource("projects") as mapboxgl.GeoJSONSource | undefined;
     if (!source) return;
     source.setData(buildProjectFeatureCollection(projects));
-  }, [projects]);
+  }, [projects, mapLoaded]);
 
   useEffect(() => {
     if (!selectedProject || !mapRef.current) return;
