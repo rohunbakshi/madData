@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "project_id": "nova-gee-001",
+        "name": "Loudoun Cluster from GEE",
+        "county": "Loudoun",
+        "footprint_acres": 120.5,
+        "change_area_m2": 402000,
+        "intensity_score": 86,
+        "date_range": "2024-01 to 2025-10",
+        "water_stress_normalized": 0.76
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-77.553, 39.071],
+            [-77.525, 39.071],
+            [-77.525, 39.086],
+            [-77.553, 39.086],
+            [-77.553, 39.071]
+          ]
+        ]
+      }
+    }
+  ]
+}
